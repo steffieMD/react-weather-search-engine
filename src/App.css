@@ -1,3 +1,9 @@
-.container {
-  margin-top: 150px;
+.App {
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.footer {
+  font-size: 11px;
+  margin: 10px 0;
 }
