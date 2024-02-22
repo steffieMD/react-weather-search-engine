@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 
 export default function Weather() {
   let apiKey = "a969311cfcbb4a83dfad2cf7478397f9";
@@ -29,7 +30,7 @@ export default function Weather() {
         wind: response.data.wind.speed,
         description: response.data.weather[0].description,
         icon: response.data.weather[0].icon,
-        date: "Wednesday 07:00",
+        date: new Date(response.data.dt * 1000),
       });
     };
 
@@ -76,7 +77,9 @@ export default function Weather() {
         {weatherData.location} {weatherData.country}
       </h1>
       <ul>
-        <li>{weatherData.date}</li>
+        <li>
+          <FormattedDate date={weatherData.date} />
+        </li>
         <li className="text-capitalize">{weatherData.description}</li>
       </ul>
 
@@ -102,12 +105,12 @@ export default function Weather() {
           )}
           <span className="unit ">
             {" "}
-            <a href="/" onClick={showCelsius}>
+            <a href="/" onClick={showCelsius} on="true">
               °C
             </a>
           </span>
           <span className="unit">
-            <a href="/" onClick={showFahrenheit} on>
+            <a href="/" onClick={showFahrenheit} on="true">
               °F
             </a>
           </span>
