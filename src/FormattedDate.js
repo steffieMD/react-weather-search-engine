@@ -26,22 +26,26 @@ export default function FormattedDate(props) {
     "December",
   ];
 
-  let day = props.date.getDay();
-  let month = props.date.getMonth();
-  let year = props.date.getFullYear();
-  let minutes = props.date.getMinutes();
-  let hours = props.date.getHours();
-  let currentDate = props.date.getDate();
+  if (props.date) {
+    let day = props.date.getDay();
+    let month = props.date.getMonth();
+    let year = props.date.getFullYear();
+    let minutes = props.date.getMinutes();
+    let hours = props.date.getHours();
+    let currentDate = props.date.getDate();
 
-  return (
-    <div>
+    return (
       <div>
-        {days[day]}, {months[month]} {currentDate} {year}{" "}
+        <div>
+          {days[day]}, {months[month]} {currentDate} {year}{" "}
+        </div>
+        <div>
+          {hours < 10 ? `0${hours}` : hours}:
+          {minutes < 10 ? `0${minutes}` : minutes} {hours < 12 ? `AM` : `PM`}
+        </div>
       </div>
-      <div>
-        {hours < 10 ? `0${hours}` : hours}:
-        {minutes < 10 ? `0${minutes}` : minutes} {hours < 12 ? `AM` : `PM`}
-      </div>
-    </div>
-  );
+    );
+  } else {
+    return "";
+  }
 }

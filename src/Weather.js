@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
+import { InfinitySpin } from "react-loader-spinner";
 
 export default function Weather(props) {
   let [weatherData, setWeatherData] = useState({ ready: false });
@@ -61,6 +62,13 @@ export default function Weather(props) {
     );
   } else {
     search();
-    return "Loading...";
+    return (
+      <InfinitySpin
+        visible={true}
+        width="200"
+        color="#4fa94d"
+        ariaLabel="infinity-spin-loading"
+      />
+    );
   }
 }

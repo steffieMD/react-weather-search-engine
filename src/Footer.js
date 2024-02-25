@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <p className="footer">
       This project was coded by{" "}
-      <a href="/" target="blank">
+      <a href="https://github.com/steffieMD" target="blank">
         Steff Metieh
       </a>{" "}
       and is{" "}
@@ -16,7 +16,10 @@ export default function Footer() {
         open-sourced on GitHub
       </a>{" "}
       and hosted on{" "}
-      <a href="/" target="blank">
+      <a
+        href="https://weather-search-engine-react-practice.netlify.app/"
+        target="blank"
+      >
         Netlify
       </a>
     </p>
