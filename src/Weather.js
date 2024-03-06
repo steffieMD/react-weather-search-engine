@@ -3,6 +3,7 @@ import "./Weather.css";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import { InfinitySpin } from "react-loader-spinner";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Weather(props) {
   let [weatherData, setWeatherData] = useState({ ready: false });
@@ -12,6 +13,8 @@ export default function Weather(props) {
   const searchData = (response) => {
     setWeatherData({
       ready: true,
+      longitude: response.data.coord.lon,
+      latitude: response.data.coord.lat,
       location: response.data.name,
       country: response.data.sys.country,
       temperature: response.data.main.temp,
@@ -58,6 +61,10 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo info={weatherData} />
+        <WeatherForecast
+          lat={weatherData.latitude}
+          long={weatherData.longitude}
+        />
       </div>
     );
   } else {

@@ -1,6 +1,7 @@
 import React from "react";
 import FormattedDate from "./FormattedDate";
 import WeatherTemperature from "./WeatherTemperature";
+import WeatherIcon from "./WeatherIcon";
 
 export default function info(props) {
   let iconUrl = `https://openweathermap.org/img/wn/${props.info.icon}@2x.png`;
@@ -19,17 +20,7 @@ export default function info(props) {
 
       <div className="row">
         <div className="col-8 d-flex">
-          <div className="d-flex justify-content-center align-items-center">
-            {props.info.icon ? (
-              <img src={iconUrl} alt={props.info.description} />
-            ) : (
-              <img
-                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                className="img-fluid"
-                alt="weather icon"
-              />
-            )}
-          </div>
+          <WeatherIcon iconUrl={iconUrl} alt={props.info.description} />
           <WeatherTemperature celsius={props.info.temperature} />
         </div>
         <div className="col-4">
