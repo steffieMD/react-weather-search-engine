@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Weather.css";
 
 export default function WeatherTemperature(props) {
-  let [celsius, setCelsius] = useState(props.celsius);
   let [unit, setUnit] = useState("metric");
 
   const showFahrenheit = (event) => {

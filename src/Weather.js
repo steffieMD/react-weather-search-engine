@@ -1,20 +1,21 @@
-import React, { useState } from "react";
-import "./Weather.css";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+
 import WeatherInfo from "./WeatherInfo";
-import { InfinitySpin } from "react-loader-spinner";
 import WeatherForecast from "./WeatherForecast";
+import axios from "axios";
+import "./Weather.css";
+
+import { InfinitySpin } from "react-loader-spinner";
 
 export default function Weather(props) {
   let [weatherData, setWeatherData] = useState({ ready: false });
 
   let [city, setCity] = useState(props.defaultCity);
 
-  const searchData = (response) => {
+  const handleResponse = (response) => {
     setWeatherData({
       ready: true,
-      longitude: response.data.coord.lon,
-      latitude: response.data.coord.lat,
+      coords: response.data.coord,
       location: response.data.name,
       country: response.data.sys.country,
       temperature: response.data.main.temp,
@@ -38,13 +39,13 @@ export default function Weather(props) {
   const search = () => {
     const apiKey = "a969311cfcbb4a83dfad2cf7478397f9";
     const apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiURL).then(searchData);
+    axios.get(apiURL).then(handleResponse);
   };
 
   if (weatherData.ready) {
     return (
       <div className="border container Weather">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id="search">
           <div className="row">
             <div className="col-9">
               <input
@@ -61,10 +62,7 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo info={weatherData} />
-        <WeatherForecast
-          lat={weatherData.latitude}
-          long={weatherData.longitude}
-        />
+        <WeatherForecast coordinates={weatherData.coords} />
       </div>
     );
   } else {
