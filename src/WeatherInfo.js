@@ -4,8 +4,6 @@ import WeatherTemperature from "./WeatherTemperature";
 import WeatherIcon from "./WeatherIcon";
 
 export default function info(props) {
-  let iconUrl = `https://openweathermap.org/img/wn/${props.info.icon}@2x.png`;
-
   return (
     <div className="WeatherInfo">
       <h1>
@@ -20,7 +18,7 @@ export default function info(props) {
 
       <div className="row">
         <div className="col-8 d-flex">
-          <WeatherIcon iconUrl={iconUrl} alt={props.info.description} />
+          <WeatherIcon code={props.info.icon} size={55} />
           <WeatherTemperature celsius={props.info.temperature} />
         </div>
         <div className="col-4">

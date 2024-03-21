@@ -21,7 +21,7 @@ export default function WeatherTemperature(props) {
   if (unit === "metric") {
     return (
       <>
-        <span className="temperature ">{Math.round(props.celsius)}</span>
+        <span className="temperature">{Math.round(props.celsius)}</span>
 
         <span className="unit ">
           {" "}
