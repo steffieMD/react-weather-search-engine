@@ -18,7 +18,10 @@ export default function info(props) {
 
       <div className="row">
         <div className="col-8 d-flex">
-          <WeatherIcon code={props.info.icon} size={55} />
+          <div className=" pt-3 pe-2">
+            <WeatherIcon code={props.info.icon} size={55} />
+          </div>
+
           <WeatherTemperature celsius={props.info.temperature} />
         </div>
         <div className="col-4">
